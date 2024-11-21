@@ -66,7 +66,7 @@ ssh -T git@github.com
 
 ## 2. git常用命令
 
-![command](.\img\command.png)
+![command](./img/command.png)
 
 ### 2.1 创建版本库
 
