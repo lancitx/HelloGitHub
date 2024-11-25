@@ -66,8 +66,6 @@ ssh -T git@github.com
 
 ## 2. git常用命令
 
-
-
 ![command](./img/command.png)
 
 ### 2.1 创建版本库
@@ -524,17 +522,239 @@ git branch -r
 git branch -a
 ```
 
+创建新分支、创建新分支并切换到该分支：
+
+```bash
+git branch <branch_name>
+git checkout -b <branch_name>
+```
+
+切换分支：
+
+```bash
+git checkout <branch_name>
+```
+
+删除本地分支：
+
+```bash
+git branch -d <branch_name>
+```
+
+删除远程分支：
+
+```bash
+git push origin --delete <branch_name>
+```
+
+重命名分支：
+
+```bash
+git branch -m <old_branch_name> <new_branch_name>
+```
+
+设置分支的上游分支：
+
+```bash
+git branch --set-upstream-to=origin/<branch_name>
+```
+
+查看分支的提交历史：
+
+```bash
+git log <branch_name>
+```
+
+创建与某个提交相关的分支：
+
+```bash
+git log <branch_name>
+```
+
+---
+
+#### 2.4.2 git tag
+
+查看标签的详细信息：
+
+```bash
+git show <tag_name>
+```
+
+查看所有标签、查看**带有详细信息的标签**：
+
+```bash
+git tag
+git tag -n
+```
+
+创建轻量标签（不带元数据，即注释）的标签：
+
+```bash
+git tag <tag_name>
+```
+
+创建**带注释**的标签：
+
+```bash
+git tag -a <tag_name> -m "your message"
+```
+
+创建**带注释的标签，并指向特定提交**的标签：
+
+```bash
+git tag -a <tag_name> <commit_id> -m "your message"
+```
+
+删除本地标签：
+
+```bash
+git tag -d <tag_name>
+```
+
+删除远程标签：
+
+```bash
+git push origin --delete <tag_name>
+```
+
+推送标签到远程仓库、推送所有标签到远程仓库：
+
+```bash
+git push origin <tag_name>
+git push --tags
+```
+
 ---
 
 ### 2.5 合并与衍合
 
-- 
+#### 2.5.1 git merge
+
+将`branch_name`合并到当前分支，自动处理冲突：
+
+```bash
+git merge <branch_name>
+```
+
+**合并分支时创建新的合并提交分支**，保留历史提交：
+
+```bash
+git merge --no-ff <branch_name>
+```
+
+快速合并，**不提交新的合并分支**：
+
+```bash
+git merge --ff <branch_name>
+```
+
+解决**合并冲突**：
+
+```bash
+git add <file>
+git commit
+```
+
+查看合并历史：
+
+```bash
+git log --graph --oneline
+```
+
+----
+
+#### 2.5.2 git rebase
+
+解释：它通过将分支的基础修改为另一个分支的最新提交，使提交历史更清晰和线性。
+
+例子：假设 `feature` 分支的基础是 `main` 的某个早期提交，变基后它的基础将更新为 `main` 分支的最新提交。
+
+**操作前历史：**
+
+```css
+A---B---C (main)
+     \
+      D---E---F (feature)
+```
+
+**变基操作：**
+
+```bash
+git checkout feature
+git rebase main
+```
+
+**变基后历史：**
+
+```css
+A---B---C (main)
+             \
+              D'---E'---F' (feature)
+```
+
+
+
+将`feature`分支的**基**更改为`main`的最新提交：
+
+```bash
+git checkout feature
+git rebase main
+```
+
+**交互式变基**：
+
+```bash
+git rebase -i <base_branch>
+```
+
+**常用选项**：
+
+| 命令                    | 功能说明                                             |
+| ----------------------- | ---------------------------------------------------- |
+| `git rebase <branch>`   | 将当前分支变基到指定分支。                           |
+| `git rebase -i`         | 交互式变基，允许修改提交的顺序或内容。               |
+| `git rebase --continue` | 继续上一次因冲突暂停的变基操作。                     |
+| `git rebase --abort`    | 取消当前变基操作，恢复到变基前的状态。               |
+| `git rebase --skip`     | 跳过当前提交并继续变基（当某个提交可以忽略时使用）。 |
 
 ---
 
 ### 2.6 远程操作
 
-- 
+#### 2.6.1 git remote
+
+查看远程仓库、查看远程仓库的详细信息、查看仓库的配置信息：
+
+```bash
+git remote
+git remote -v
+git remote show <name>
+```
+
+**添加远程仓库到本地仓库**，`name`：仓库名称，`url`：仓库网址：
+
+```bash
+git remote add <name> <url>
+```
+
+**修改远程仓库的`url`**：
+
+```bash
+git remote set-url <name> <new_url>
+```
+
+删除远程仓库：
+
+```bash
+git remote remove <name>
+```
+
+---
+
+#### 2.6.2 git fetch
+
+
 
 ---
 
