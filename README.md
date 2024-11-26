@@ -754,7 +754,114 @@ git remote remove <name>
 
 #### 2.6.2 git fetch
 
+解释：只会下载远程仓库中的数据，更新本地的远程跟踪分支，用户需要手动进行合并。
 
+获取远程仓库的所有更新：
+
+```bash
+git fetch
+```
+
+获取仓库所有的更新：
+
+```bash
+git fetch --all
+```
+
+获取指定仓库的更新：
+
+```bash
+git fetch <remote_name>
+```
+
+获取指定分支的更新：
+
+```bash
+git fetch <remote_name> <branch_name>
+```
+
+获取**并删除本地中远程仓库已经删除的分支**：
+
+```bash
+git fetch --prune
+```
+
+获取所有远程仓库的标签：
+
+```bash
+git fetch --tags
+```
+
+`git fetch` 和 `git pull` 的区别：
+
+- `git fetch` 仅仅是获取远程仓库的更新数据，不会自动合并到当前工作分支。
+- `git pull` 是 `git fetch` + `git merge` 的组合，执行完 `fetch` 后，它会自动合并更新到当前分支。
+
+----
+
+#### 2.6.3 git pull
+
+拉取指定仓库中的特定分支更新，并合并：
+
+```bash
+git pull <remote_name> <branch_name>
+```
+
+**拉取并进行`rebase`操作**：
+
+```bash
+git pull --rebase
+```
+
+拉取**仅获取数据，不进行合并**，该过程暂停，需要手动检阅：
+
+```bash
+git pull --no-commit
+```
+
+---
+
+#### 2.6.4 git push
+
+推送指定分支到远程仓库：
+
+```bash
+git push <remote_name> <branch_name>
+```
+
+推送本地所有分支到远程仓库：
+
+```bash
+git push --all <remote_name>
+```
+
+**推送标签**：
+
+```bash
+git push <remote_name> <tag_name>
+```
+
+**强制推送**：
+
+```bash
+git push --force
+```
+
+> 此命令强制推送本地分支到远程仓库，覆盖远程仓库中的内容。**注意**，使用 `--force` 会覆盖远程分支的历史，这可能导致其他开发者的提交丢失，应该谨慎使用。常见的情况是，当你进行了 `git rebase` 或者修正了提交历史，且希望远程分支的历史与本地分支一致时，使用 `--force` 进行强制推送。
+
+
+
+推送，并删除远程分支：
+
+```bash
+git push <remote_name> --delete <branch_name>
+```
+
+设置上游分支，**关联本地分支到远程分支上**：
+
+```bash
+git push --set-upstream <remote_name> <branch_name>
+```
 
 ---
 
