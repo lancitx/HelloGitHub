@@ -873,5 +873,50 @@ git push --set-upstream <remote_name> <branch_name>
 
 ## 4. 日常debug总结
 
-- 
+### 4.1 新建repo
+
+```bash
+echo "# test" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/lancitx/test.git
+git push -u origin main
+```
+
+### 4.2 将本地repo绑定远程repo
+
+```bash
+git remote add origin https://github.com/lancitx/test.git
+git branch -M main
+git push -u origin main
+```
+
+### 4.3 屏蔽某文件/目录
+
+在`repo`根目录：
+
+```bash
+echo "myfile_or_dir/" >> .gitignore
+```
+
+再确保取消 `Git` 对该文件/目录的追踪：
+
+```bash
+git rm -r --cached myfile_or_dir/
+```
+
+提交更改：
+
+```bash
+git add .gitignore
+git commit -m "Update .gitignore to exclude myfile_or_dir"
+```
+
+推送远程仓库：
+
+```bash
+git push
+```
 
