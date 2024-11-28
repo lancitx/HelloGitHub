@@ -920,3 +920,33 @@ git commit -m "Update .gitignore to exclude myfile_or_dir"
 git push
 ```
 
+### 4.4 撤销`--hard`操作
+
+当你把 `git reset --soft HEAD~1` 输成 `git reset --hard HEAD~1` 时，如果你有提交备份，则可以：
+
+```bash
+git reflog
+```
+
+信息输出：
+
+```bash
+5fdc6fb (HEAD -> main) HEAD@{0}: reset: moving to HEAD@{2}
+5fdc6fb (HEAD -> main) HEAD@{1}: reset: moving to HEAD@{1}
+b62e1cf (origin/main, origin/HEAD) HEAD@{2}: reset: moving to HEAD~1
+5fdc6fb (HEAD -> main) HEAD@{3}: commit: update
+b62e1cf (origin/main, origin/HEAD) HEAD@{4}: clone: from https://github.com/lancitx/FreeRTOS.git
+```
+
+然后，**撤销到特定提交：**
+
+```bash
+git reset --hard HEAD@{2}
+```
+
+**如果有些文件尚未提交：**
+
+```bash
+git fsck --lost-found
+```
+
