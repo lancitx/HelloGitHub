@@ -104,8 +104,6 @@ git clone --depth 1 --filter=blob:none <repository-url> subdirectory
 
 > 克隆`repository-url`仓库下 一级子目录`subdirectory`副本。
 
----
-
 #### 2.1.2 git init
 
 初始化一个新的Git仓库：
@@ -129,8 +127,6 @@ git init <Options> <local-directory>
 ```bash
 git status
 ```
-
----
 
 #### 2.2.2 git diff
 
@@ -199,8 +195,6 @@ git diff --theirs
 | `-w`                    | 忽略空白字符的差异                 |
 | `-U<n>`                 | 设置上下文行数                     |
 
----
-
 #### 2.2.3 git add
 
 添加单个文件：
@@ -255,8 +249,6 @@ git add -p
 | `--dry-run`            | 显示将被暂存的文件，但不实际添加到暂存区。             |
 | `--force` / `-f`       | 强制添加被 `.gitignore` 忽略的文件。                   |
 
----
-
 #### 2.2.4 git mv
 
 重命名文件：
@@ -276,8 +268,6 @@ git mv <file> <directory>
 ```bash
 git mv <source> <destination>
 ```
-
----
 
 #### 2.2.5 git rm
 
@@ -307,8 +297,6 @@ git rm --cached config.json
 | `-r` / `--recursive` | 递归删除目录及其内容。                     |
 | `-f` / `--force`     | 强制删除文件，即使工作区中有未保存的修改。 |
 | `-n` / `--dry-run`   | 显示将被删除的文件，但不实际执行删除操作。 |
-
----
 
 #### 2.2.6 git commit
 
@@ -435,8 +423,6 @@ git reset --hard HEAD~1
 
 - 查看**工作区**和**暂存区**状态：`git status`
 
----
-
 #### 2.3.2 git revert
 
 与 `git reset` 不同，**它不会直接删除提交历史，而是通过创建一个新的提交来逆转指定提交的改动**。
@@ -485,8 +471,6 @@ git revert <start_commit>^..<end_commit>
 | `--continue`         | 在冲突解决后继续完成 `revert` 操作。                 |
 | `--abort`            | 取消当前的 `revert` 操作。                           |
 | `--no-edit`          | 不进入编辑模式，直接使用默认的提交信息。             |
-
----
 
 #### 2.3.3 git checkout
 
@@ -570,8 +554,6 @@ git log <branch_name>
 ```bash
 git log <branch_name>
 ```
-
----
 
 #### 2.4.2 git tag
 
@@ -662,8 +644,6 @@ git commit
 git log --graph --oneline
 ```
 
-----
-
 #### 2.5.2 git rebase
 
 解释：它通过将分支的基础修改为另一个分支的最新提交，使提交历史更清晰和线性。
@@ -750,8 +730,6 @@ git remote set-url <name> <new_url>
 git remote remove <name>
 ```
 
----
-
 #### 2.6.2 git fetch
 
 解释：只会下载远程仓库中的数据，更新本地的远程跟踪分支，用户需要手动进行合并。
@@ -797,8 +775,6 @@ git fetch --tags
 - `git fetch` 仅仅是获取远程仓库的更新数据，不会自动合并到当前工作分支。
 - `git pull` 是 `git fetch` + `git merge` 的组合，执行完 `fetch` 后，它会自动合并更新到当前分支。
 
-----
-
 #### 2.6.3 git pull
 
 拉取指定仓库中的特定分支更新，并合并：
@@ -818,8 +794,6 @@ git pull --rebase
 ```bash
 git pull --no-commit
 ```
-
----
 
 #### 2.6.4 git push
 
@@ -948,5 +922,40 @@ git reset --hard HEAD@{2}
 
 ```bash
 git fsck --lost-found
+```
+
+### 4.5 Git代理
+
+查看`Git`代理：
+
+```bash
+git config --global --get http.proxy
+git config --global --get https.proxy
+```
+
+只对 `https://github.com/lancitx/FreeRTOS.git/` 仓库进行代理：
+
+```bash
+git config --global http.https://github.com.proxy socks5://127.0.0.1:7897
+```
+
+取消代理：
+
+```bash
+git config --global --unset http.https://github.com.proxy
+```
+
+对所有仓库设置代理：
+
+```bash
+git config --global http.proxy 'socks5://127.0.0.1:7897'
+git config --global https.proxy 'socks5://127.0.0.1:7897'
+```
+
+取消代理：
+
+```bash
+git config --global --unset http.proxy
+git config --global --unset https.proxy
 ```
 
