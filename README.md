@@ -148,7 +148,7 @@ git diff branch1 branch2
 git diff <file>
 ```
 
-查看**两次提交的差异**（哈希值）;
+查看**两次提交的差异**（哈希值，用`git log --oneline`）：
 
 ```bash
 git diff a1b2c3d4 e5f6g7h8
