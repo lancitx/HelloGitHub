@@ -993,3 +993,31 @@ git config --global --unset http.proxy
 git config --global --unset https.proxy
 ```
 
+---
+
+### 4.6 解决LF和CRLF冲突
+
+**提交时将`CRLF`转为`LF`，但是不在检出时转换**：
+
+```bash
+git config --global core.autocrlf input
+```
+
+**提交与检出时都将`CRLF`转为`LF`**：
+
+```bash
+git config --global core.autocrlf true
+```
+
+**禁用自动转换功能**：
+
+```bash
+git config --global core.autocrlf false
+```
+
+查看当前`Git`行结束符设置：
+
+```bash
+git config --global core.autocrlf
+```
+
