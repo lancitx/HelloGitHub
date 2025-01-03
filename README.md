@@ -1,11 +1,4 @@
-# Hello GitHub
-
-本文内容：
-
-- **Git安装**
-- **Git常用命令**
-- **GitHub进阶用法**
-- **日常debug总结**
+[TOC]
 
 ---
 
