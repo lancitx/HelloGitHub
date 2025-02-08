@@ -39,6 +39,7 @@
   - [4.4 撤销`--hard`操作](#44-撤销--hard操作)
   - [4.5 Git代理](#45-git代理)
   - [4.6 解决LF和CRLF冲突](#46-解决lf和crlf冲突)
+  - [4.7 创建页内跳转目录](#47-创建页内跳转目录)
 
 ---
 
@@ -1069,3 +1070,10 @@ git config --global core.autocrlf
 |          若标题，**包含中文符号**，则忽略这些符号。          |          如`[一、引言]`，则：`[一、引言](#一引言)`           |
 |   若标题为`1.git与github`，包含`.`，将其忽略或用`-`替代。    |  如`[1.git与github]`，则：`[1.git与github](#1git与github)`   |
 |              若标题包含空格，使用`-`替换空格。               | 如`[1.git与github]`，则：`[1. git与github](#1-git与github)`，[1. git与github](#1-git与github) |
+
+最后可以使用`VScode`中的插件`Markdown All in One`，按下`Ctrl + Shift + P`，打开搜索命令栏，键入：
+
+```bash
+Markdown All in One: Create Table of Contents
+```
+
